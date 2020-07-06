@@ -1,0 +1,23 @@
+{
+  "name": "gopro_rename",
+  "version": "1.0.0",
+  "description": "Gopro chaptered File rename tool",
+  "main": "app.js",
+  "dependencies": {
+    "enquirer": "^2.3.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisWolter/gopro_rename.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chrisWolter/gopro_rename/issues"
+  },
+  "homepage": "https://github.com/chrisWolter/gopro_rename#readme"
+}

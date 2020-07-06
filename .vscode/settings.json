@@ -4,5 +4,6 @@
         "statusBar.border": "#b52e31",
         "statusBar.foreground": "#e7e7e7",
         "statusBarItem.hoverBackground": "#d04649"
-    }
+    },
+    "peacock.color": "#b52e31"
 }
