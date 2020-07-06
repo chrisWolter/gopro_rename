@@ -1,11 +1,13 @@
-const { getFiles } = require("./getFiles");
-const { prepareRename } = require("./renameFiles");
-const { createFileName__Hero6_8 } = require("./createFilesName__Hero6_8");
+const { getFiles } = require("./service/getFiles");
+const { prepareRename } = require("./service/renameFiles");
+const { createFileName__Hero6_Max } = require("./service/naming/createFileName__Hero6_Max");
+const { createFileName__Hero_5 } = require("./service/naming/createFileName__Hero_5");
+const { createFileName__Fusion } = require("./service/naming/createFileName__Fusion");
 
-const { prompt } = require('enquirer');
+
+const { prompt } = require("enquirer");
 
 let files =[];
-
 
 
 //TODO: Refactoring
@@ -19,10 +21,9 @@ const question = [
     name: 'Type',
     message: 'Which Gopro do you have?',
     choices: [
-      { name: 'Hero HD 2 - Hero (2018)',   message: 'Hero HD 2 - Hero (2018)',   value: '1' }, //<= choice object
-      { name: 'Hero 6 - Hero 8', message: 'Hero 6 - Hero 8', value: '2' }, //<= choice object
-    { name: 'MAX',  message: 'MAX',  value: '3' },
-    { name: 'Fusion',  message: 'Fusion',  value: '4' },  //<= choice object
+      { name: 'Hero HD 2 - Hero (2018)',   message: 'Hero HD 2 - Hero (2018)' }, //<= choice object
+      { name: 'Hero 6 - 8, MAX', message: 'Hero 6 - 8, MAX' }, //<= choice object
+    { name: 'Fusion',  message: 'Fusion' },  //<= choice object
   ]
 },
 {
@@ -34,7 +35,11 @@ const question = [
 
 let init = async() => {
   let answers = await prompt(question);
-  selectGopro(answers.Type, answers.directory.replace(/\\/g, "/"));
+
+  const directory = answers.directory.replace(/\\/g, "/");
+  files = getFiles(directory);
+
+  selectGopro(answers.Type, directory);
 }
 
 init();
@@ -42,20 +47,15 @@ init();
 function selectGopro(type, directory){
   switch (type) {
     case "Hero HD 2 - Hero (2018)":
-      files = getFiles(directory);
+      prepareRename(directory, files, createFileName__Hero_5);
       break;
 
-    case "Hero 6 - Hero 8"  :
-      files = getFiles(directory);
-      prepareRename(directory, files, createFileName__Hero6_8);
-      break;
-
-    case "MAX":
-      files = getFiles(directory);
+    case "Hero 6 - 8, MAX"  :
+      prepareRename(directory, files, createFileName__Hero6_Max);
       break;
 
     case "Fusion":
-      files = getFiles(directory);
+      prepareRename(directory, files, createFileName__Fusion);
       break;
     default:
       console.log("There was an Error. Please try again")
