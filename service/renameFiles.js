@@ -2,15 +2,8 @@ const { checkForMultiFile } = require("./checkForMultiFile");
 
 var fs = require("fs");
 
-function prepareRename(direcotry, fileArray, fileFunction){
-
-  console.log("----------------");
-  console.log(fileArray);
-  console.log("----------------");
-
+function prepareRename(direcotry, fileArray, fileFunction) {
   fileArray.sort(endComparator);
-
-  console.log(fileArray);
 
   for (let file of fileArray) {
     if (checkForMultiFile(file, fileArray)) {
@@ -18,23 +11,26 @@ function prepareRename(direcotry, fileArray, fileFunction){
       const oldFileName = direcotry + "/" + file;
 
       //renameFiles(oldFileName, newFileName);
-      
+
       console.log("renaming: " + file + " to: " + newFileName);
     }
-  };
-};
-
+  }
+}
 
 function endComparator(a, b) {
-  if (a.substring(4, 8) < b.substring(4, 8)) return -1;
-  if (a.substring(4, 8) > b.substring(4, 8)) return 1;
-  if (a.substring(4, 8) == b.substring(4, 8) && a.substring(2, 4) < b.substring(2, 4)) return -1;
-  if (a.substring(4, 8) == b.substring(4, 8) && a.substring(2, 4) > b.substring(2, 4)) return 1;
+  const fileA = { chapter: a.substring(2, 4), number: a.substring(4, 8) };
+  const fileB = { chapter: b.substring(2, 4), number: b.substring(4, 8) };
+
+  if (fileA.number < fileB.number) return -1;
+  if (fileA.number > fileB.number) return 1;
+  if (fileA.chapter === "PR") return -1;
+  if (fileB.chapter === "PR") return 1;
+  if (fileA.chapter < fileB.chapter) return -1;
+  if (fileA.chapter > fileB.chapter) return 1;
   return 0;
 }
 
-
-function renameFiles(oldFileName, newFileName){
+function renameFiles(oldFileName, newFileName) {
   fs.rename(oldFileName, newFileName, (error) => {
     if (error) {
       console.log(error);
@@ -43,6 +39,5 @@ function renameFiles(oldFileName, newFileName){
     }
   });
 }
-
 
 module.exports = { prepareRename };
