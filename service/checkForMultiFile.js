@@ -1,12 +1,25 @@
 function checkForMultiFile(file, fileArray) {
   let rename = false;
+  const firstChapter = ["PR", "BK", "FR"];
+  let fileIndex;
+  const fileChapter = file.substring(2,4);
 
-  if (file.substring(2, 4) > 01) {
+  if (fileChapter > 01) {
     rename = true;
   }
 
-  if (file.substring(2, 4) == 01 || file.substring(2, 4) == "PR") {
-    let fileIndex = fileArray.indexOf(file) + 1;
+  if (
+    fileChapter === "01" ||
+    firstChapter.includes(fileChapter)
+  ) {
+    if (
+      fileChapter === firstChapter[1] ||
+      fileChapter === firstChapter[2]
+    ) {
+      fileIndex = fileArray.indexOf(file) + 2;
+    } else {
+      fileIndex = fileArray.indexOf(file) + 1;
+    }
 
     if (fileArray.length > fileIndex) {
       if (
