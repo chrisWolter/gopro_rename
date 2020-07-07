@@ -19,8 +19,6 @@ function prepareRename(directory, goproModel) {
 
       renameConfig.push({oldFileName, newFileName});
       //renameFiles(oldFileName, newFileName);
-
-      console.log("renaming: " + file + " to: " + newFileName);
     }
   }
   return renameConfig;
@@ -43,16 +41,6 @@ function endComparator(a, b) {
   if (fileA.chapter < fileB.chapter) return -1;
   if (fileA.chapter > fileB.chapter) return 1;
   return 0;
-}
-
-function renameFiles(oldFileName, newFileName) {
-  fs.rename(oldFileName, newFileName, (error) => {
-    if (error) {
-      new Error(error);
-    } else {
-      console.log("renaming: " + file + " to: " + newFileName);
-    }
-  });
 }
 
 module.exports = { prepareRename };

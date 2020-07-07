@@ -1,5 +1,6 @@
 const { prepareRename } = require("./service/prepareRename");
 const { prompt } = require("enquirer");
+const renameFiles = require("./service/renameFiles");
 
 //TODO: check if already renamed
 //TODO: undo rename
@@ -36,13 +37,15 @@ const rename = [
 
 (async () => {
   let answers = await prompt(question);
-
   const directory = answers.directory.replace(/\\/g, "/");
 
   let renameConfig = await selectGopro(answers.Type, directory);
 
   showRenaming(renameConfig);
-  await prompt(rename);
+
+  /*if(await prompt(rename) === 'yes'){
+    rename(renameConfig);
+  };*/
 })();
 
 function selectGopro(type, directory) {
@@ -73,5 +76,13 @@ function selectGopro(type, directory) {
 function showRenaming(config){
   config.forEach(config => {
     console.log("Rename", config.oldFileName, "to", config.newFileName);
+  });
+}
+
+function rename(renameConfig){
+  renameConfig.forEach(config => {
+    const newFileName = directory + "/" + config.newFileName;
+    const oldFileName = directory + "/" + config.oldFileName;
+    renameFiles(oldFileName, newFileName);
   });
 }
