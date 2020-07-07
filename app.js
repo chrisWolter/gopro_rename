@@ -1,14 +1,6 @@
-const { getFiles } = require("./service/getFiles");
-const { prepareRename } = require("./service/renameFiles");
-const { createFileName__Hero6_Max } = require("./service/naming/createFileName__Hero6_Max");
-const { createFileName__Hero_5 } = require("./service/naming/createFileName__Hero_5");
-const { createFileName__Fusion } = require("./service/naming/createFileName__Fusion");
-
+const { prepareRename } = require("./service/prepareRename");
 const { prompt } = require("enquirer");
 
-let files = [];
-
-//TODO: Refactoring
 //TODO: check if already renamed
 //TODO: undo rename
 
@@ -30,33 +22,56 @@ const question = [
   },
 ];
 
-let init = async () => {
+const rename = [
+  {
+    type: "select",
+    name: "rename",
+    message: "Would you like to rename those files?",
+    choices: [
+      {name: "yes", message: "yes"},
+      {name: "no", message: "no"},
+    ]
+  }
+];
+
+(async () => {
   let answers = await prompt(question);
 
   const directory = answers.directory.replace(/\\/g, "/");
-  files = getFiles(directory);
 
-  selectGopro(answers.Type, directory);
-};
+  let renameConfig = await selectGopro(answers.Type, directory);
 
-init();
+  showRenaming(renameConfig);
+  await prompt(rename);
+})();
 
 function selectGopro(type, directory) {
+  let renameConfig;
   switch (type) {
     case "Hero HD 2 - Hero (2018)":
-      prepareRename(directory, files, createFileName__Hero_5);
+      renameWrapper("Hero");
       break;
 
     case "Hero 6 - 8, MAX":
-      prepareRename(directory, files, createFileName__Hero6_Max);
+      renameWrapper("Hero6");
       break;
 
     case "Fusion":
-      prepareRename(directory, files, createFileName__Fusion);
+      renameWrapper("Fusion");
       break;
     default:
-      console.log("There was an Error. Please try again");
+      new Error("There was an Error. Please try again");
       break;
   }
+
+  function renameWrapper(callback) {
+    renameConfig = prepareRename(directory, callback);
+  }
+  return renameConfig;
 }
 
+function showRenaming(config){
+  config.forEach(config => {
+    console.log("Rename", config.oldFileName, "to", config.newFileName);
+  });
+}
