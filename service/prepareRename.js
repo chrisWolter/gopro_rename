@@ -1,20 +1,29 @@
 const { checkForMultiFile } = require("./checkForMultiFile");
+const { createFileName } = require("./createFileName");
 
 var fs = require("fs");
+let renameConfig =[];
 
-function prepareRename(direcotry, fileArray, fileFunction) {
+function prepareRename(directory, goproModel) {
+  const fileArray = fs.readdirSync(directory);
+
   fileArray.sort(endComparator);
 
   for (let file of fileArray) {
     if (checkForMultiFile(file, fileArray)) {
-      const newFileName = direcotry + "/" + fileFunction(file);
-      const oldFileName = direcotry + "/" + file;
+      const newFileName = createFileName(file, goproModel);
+      const oldFileName = file;
 
+      //const newFileName = directory + "/" + createFileName(file, goproModel);
+      //const oldFileName = directory + "/" + file;
+
+      renameConfig.push({oldFileName, newFileName});
       //renameFiles(oldFileName, newFileName);
 
       console.log("renaming: " + file + " to: " + newFileName);
     }
   }
+  return renameConfig;
 }
 
 function endComparator(a, b) {
@@ -23,8 +32,14 @@ function endComparator(a, b) {
 
   if (fileA.number < fileB.number) return -1;
   if (fileA.number > fileB.number) return 1;
+
   if (fileA.chapter === "PR") return -1;
   if (fileB.chapter === "PR") return 1;
+  if (fileA.chapter === "BK") return -1;
+  if (fileB.chapter === "BK") return 1;
+  if (fileA.chapter === "FR") return -1;
+  if (fileB.chapter === "FR") return 1;
+
   if (fileA.chapter < fileB.chapter) return -1;
   if (fileA.chapter > fileB.chapter) return 1;
   return 0;
@@ -33,7 +48,7 @@ function endComparator(a, b) {
 function renameFiles(oldFileName, newFileName) {
   fs.rename(oldFileName, newFileName, (error) => {
     if (error) {
-      console.log(error);
+      new Error(error);
     } else {
       console.log("renaming: " + file + " to: " + newFileName);
     }

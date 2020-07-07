@@ -1,11 +1,10 @@
-# GoPro Auto Renaming Tool
+# GoPro chaptered video renaming tool
 
-!! This Tool is currently under development. I cant ensure that your files are working properly after renaming, so please make sure you have a copy of your files.
+This tool renames Gopro chaptered videos to a better name convention for better sorting.
+The files are renamed from: GH010001 and GH020001 to GH010001_1 and GH010001_2. With this new naming convention Windows and Mac can sort the files better.
 
-This Tool renames Gopro Chaptered Videos to a better name convention for better sorting.
-The files are renamed from: GH010001 and GH020001 to GH010001 (1) and GH010001 (2). With this new naming convention Windows and MAC can sort the files better.
-
-! This Tool only works for Gopro Hero 6-8, but i will implement renaming of Hero - Hero 5 and Fusion/Max Footage Soon.
+## Warning
+This Tool is currently under development. I cant ensure that your files are working properly after renaming, so please make sure you have a copy of your files.
 
 ## Instalation
 
@@ -20,13 +19,13 @@ To use the Gopro Rename Tool open your command line (cmd) and got to the root wh
 
  When you are in the correct Path you can run the file with
  ``` bash
- node rename.js <Path to gopro files to rename>
+ node app.js 
  ```
 
-and just hit enter.
+and just hit enter. Then you have to Select your Gopro Model and enter your file Path where your Gopro Files are located.
 
 ## Support
-If something didnt work or you have a question. Feel free to contact me via email:
+If something wont work or you have a question. Feel free to contact me via email:
 
 renaming.tool@chris-wolter.de
 
@@ -34,15 +33,10 @@ renaming.tool@chris-wolter.de
 
 Im currently Working to enhance the renaming Tool and in the future I want to implement these tools:
 
-1: Add an CLI
+1: Show what files would be renamed and select if it is ok to rename.
 2: Dont rename a second time if the tool jsut run once over your files
 3: Undo Renaming
 
 ## License
 
-THis Project runs under [MIT](https://choosealicense.com/licenses/mit/) license
-
-
-
-
-
+This project runs under [MIT](https://choosealicense.com/licenses/mit/) license
