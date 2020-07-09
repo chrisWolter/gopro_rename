@@ -2,6 +2,7 @@ const { prepareRename } = require("./service/prepareRename");
 const { prompt } = require("enquirer");
 const renameFiles = require("./service/renameFiles");
 
+//TODO: Select if there should be a copy made with the renamed files or if the files just be renamed.
 //TODO: check if already renamed
 //TODO: undo rename
 
