@@ -13,7 +13,7 @@ let directory;
   let answers = await prompt(initQuestion);
   directory = answers.directory.replace(/\\/g, "/");
 
-  let renameConfig = await selectGopro(answers.Type);
+  let renameConfig = selectGopro(answers.Type);
 
   showRenaming(renameConfig);
 
