@@ -33,9 +33,8 @@ renaming.tool@chris-wolter.de
 
 Im currently Working to enhance the renaming Tool and in the future I want to implement these tools:
 
-1: Show what files would be renamed and select if it is ok to rename.
-2: Dont rename a second time if the tool jsut run once over your files
-3: Undo Renaming
+1: Dont rename a second time if the tool jsut run once over your files
+2: Undo Renaming
 
 ## License
 
