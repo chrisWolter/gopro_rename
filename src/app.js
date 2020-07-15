@@ -1,7 +1,8 @@
 const { prepareRename } = require("./service/prepareRename");
 const { prompt } = require("enquirer");
 const { renameFiles, renameAndCopyFiles } = require("./service/renameFiles");
-const { initQuestion, renameQuestion } = require("./service/cliQuestions");
+const { initQuestion, renameQuestion, copyQuestion } = require("./service/cliQuestions");
+
 
 //TODO: check if already renamed
 //TODO: undo rename
@@ -16,10 +17,9 @@ let directory;
 
   showRenaming(renameConfig);
 
-  let renameAnswer = await prompt(renameQuestion);
-  if(renameAnswer.rename === 'yes'){
+  if(await prompt(renameQuestion).rename === 'yes'){
     console.log("renameAnswer")
-    if(renameAnswer.copy === 'yes'){
+    if(await prompt(copyQuestion.copy) === 'yes'){
       copyRename(renameConfig);
     }else{
       rename(renameConfig);

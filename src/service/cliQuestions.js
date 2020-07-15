@@ -26,15 +26,18 @@ const initQuestion = [
         {name: "no", message: "no"},
       ]
     },
-    {
-        type: "select",
-        name: "copy",
-        message: "Should the renamed files copied to a new directory?",
-        choices: [
-          {name: "yes", message: "yes"},
-          {name: "no", message: "no"},
-        ]
-      }
   ];
 
-  module.exports = { initQuestion, renameQuestion };
+  const copyQuestion = [
+    {
+      type: "select",
+      name: "copy",
+      message: "Should the renamed files copied to a new directory?",
+      choices: [
+        {name: "yes", message: "yes"},
+        {name: "no", message: "no"},
+      ]
+    }
+  ]
+
+  module.exports = { initQuestion, renameQuestion, copyQuestion };
