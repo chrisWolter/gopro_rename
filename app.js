@@ -1,55 +1,33 @@
 const { prepareRename } = require("./service/prepareRename");
 const { prompt } = require("enquirer");
-const renameFiles = require("./service/renameFiles");
+const { renameFiles, renameAndCopyFiles } = require("./service/renameFiles");
+const { initQuestion, renameQuestion } = require("./service/cliQuestions");
 
-//TODO: Select if there should be a copy made with the renamed files or if the files just be renamed.
 //TODO: check if already renamed
 //TODO: undo rename
 
-const question = [
-  {
-    type: "select",
-    name: "Type",
-    message: "Which Gopro do you have?",
-    choices: [
-      { name: "Hero HD 2 - Hero (2018)", message: "Hero HD 2 - Hero (2018)" }, //<= choice object
-      { name: "Hero 6 - 8, MAX", message: "Hero 6 - 8, MAX" }, //<= choice object
-      { name: "Fusion", message: "Fusion" }, //<= choice object
-    ],
-  },
-  {
-    type: "input",
-    name: "directory",
-    message: "Enter your file directory!",
-  },
-];
-
-const rename = [
-  {
-    type: "select",
-    name: "rename",
-    message: "Would you like to rename those files?",
-    choices: [
-      {name: "yes", message: "yes"},
-      {name: "no", message: "no"},
-    ]
-  }
-];
+let directory;
 
 (async () => {
-  let answers = await prompt(question);
-  const directory = answers.directory.replace(/\\/g, "/");
+  let answers = await prompt(initQuestion);
+  directory = answers.directory.replace(/\\/g, "/");
 
-  let renameConfig = await selectGopro(answers.Type, directory);
+  let renameConfig = await selectGopro(answers.Type);
 
   showRenaming(renameConfig);
 
-  /*if(await prompt(rename) === 'yes'){
-    rename(renameConfig);
-  };*/
+  let renameAnswer = await prompt(renameQuestion);
+  if(renameAnswer.rename === 'yes'){
+    console.log("renameAnswer")
+    if(renameAnswer.copy === 'yes'){
+      copyRename(renameConfig);
+    }else{
+      rename(renameConfig);
+    }
+  };
 })();
 
-function selectGopro(type, directory) {
+function selectGopro(type) {
   let renameConfig;
   switch (type) {
     case "Hero HD 2 - Hero (2018)":
@@ -82,8 +60,20 @@ function showRenaming(config){
 
 function rename(renameConfig){
   renameConfig.forEach(config => {
-    const newFileName = directory + "/" + config.newFileName;
-    const oldFileName = directory + "/" + config.oldFileName;
+    const newDirectory = directory + "/"; 
+
+    const newFileName = newDirectory + config.newFileName;
+    const oldFileName = newDirectory + config.oldFileName;
     renameFiles(oldFileName, newFileName);
+  });
+}
+
+function copyRename(renameConfig){
+  renameConfig.forEach(config => {
+    const newDirectory = directory + "/renamedFiles/";
+    
+    const newFileName = newDirectory + config.newFileName;
+    const oldFileName = directory + "/" + config.oldFileName;
+    renameAndCopyFiles(newDirectory, oldFileName, newFileName);
   });
 }
