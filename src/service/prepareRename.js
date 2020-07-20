@@ -1,8 +1,8 @@
-const { checkForMultiFile } = require("./checkForMultiFile");
+const { checkForMultiFile, checkForAlreadyRenamed } = require("./checkFiles");
 const { createFileName } = require("./createFileName");
 
 var fs = require("fs");
-let renameConfig =[];
+let renameConfig = [];
 
 function prepareRename(directory, goproModel) {
   const fileArray = fs.readdirSync(directory);
@@ -10,15 +10,14 @@ function prepareRename(directory, goproModel) {
   fileArray.sort(endComparator);
 
   for (let file of fileArray) {
-    if (checkForMultiFile(file, fileArray)) {
+    if (
+      checkForMultiFile(file, fileArray) &&
+      checkForAlreadyRenamed(file, fileArray)
+    ) {
       const newFileName = createFileName(file, goproModel);
       const oldFileName = file;
 
-      //const newFileName = directory + "/" + createFileName(file, goproModel);
-      //const oldFileName = directory + "/" + file;
-
-      renameConfig.push({oldFileName, newFileName});
-      //renameFiles(oldFileName, newFileName);
+      renameConfig.push({ oldFileName, newFileName });
     }
   }
   return renameConfig;
