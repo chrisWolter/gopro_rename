@@ -13,7 +13,7 @@ You need to install Node for using this tool. You can Download Node [Here!](http
 
 ## Usage
 
-To use the Gopro Rename Tool open your command line (cmd) and got to the root where you save the rename.js file.
+To use the Gopro Rename Tool open your command line (cmd) and got to the root where you the app.js file is located.
 
 ```bash
  cd <Your Path>
@@ -25,7 +25,7 @@ When you are in the correct Path you can run the file with
 node app.js
 ```
 
-and just hit enter. Then you have to Select your Gopro Model and enter your file Path where your Gopro Files are located.
+and just hit enter. Then you have to Select your Gopro Model and enter your file Path where your Gopro Files are located. Then the Programm will show you a List with all Files that will be renamed and what the new filename will be. If you want to rename those files you can choose if these files should be copied and renaimed in a subfolder so the original files wouldnt be touched. If you choose not to copy and rename the files in the main folder will be renamed.
 
 ## Support
 
@@ -43,7 +43,9 @@ Im currently Working to enhance the renaming Tool and in the future I want to im
 
 ~~3: Dont rename a second time if the tool jsut run once over your files~~
 
-3: Undo Renaming
+4: start Programm directly via command line with a keyword
+
+5: Undo Renaming
 
 ## License
 
