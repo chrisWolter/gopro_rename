@@ -18,6 +18,11 @@ To use the Gopro Rename Tool open your command line (cmd) and got to the root wh
 ```bash
  cd <Your Path>
 ```
+Like this:
+
+```bash
+ cd C:\Users\[Username]\Gopro\Gopro files
+```
 
 When you are in the correct Path you can run the file with
 
