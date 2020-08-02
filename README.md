@@ -48,9 +48,12 @@ Im currently Working to enhance the renaming Tool and in the future I want to im
 
 ~~3: Dont rename a second time if the tool jsut run once over your files~~
 
-4: start Programm directly via command line with a keyword
+4: Add a Progress Bar so see the status of the file renaming
 
-5: Undo Renaming
+5: start Programm directly via command line with a keyword
+
+6: Undo Renaming
+
 
 ## License
 
