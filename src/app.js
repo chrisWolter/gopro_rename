@@ -7,8 +7,6 @@ const {
   copyQuestionPrompt,
 } = require("./service/cliQuestions");
 
-//TODO: undo rename
-
 let directory;
 
 (async () => {
