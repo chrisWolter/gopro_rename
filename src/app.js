@@ -77,6 +77,6 @@ function copyRename(renameConfig) {
 
     const newFileName = newDirectory + config.newFileName;
     const oldFileName = directory + "/" + config.oldFileName;
-    renameAndCopyFiles(newDirectory, oldFileName, newFileName);
+    new renameAndCopyFiles(newDirectory, oldFileName, newFileName);
   });
 }

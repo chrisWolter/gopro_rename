@@ -44,17 +44,17 @@ function renameAndCopyFiles(dir, oldFile, newFile) {
 
   var rd = fs.createReadStream(oldFile);
   rd.on("error", function (err) {
-    done(err);
+    console.log(err);
   });
 
   var wr = fs.createWriteStream(newFile);
 
   wr.on("error", function (err) {
-    done(err);
+    console.log(err);
   });
 
   wr.on("close", function () {
-    done("Finished");
+    console.log("Finished");
   });
 
   rd.pipe(str).pipe(wr);
