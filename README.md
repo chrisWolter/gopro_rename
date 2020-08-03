@@ -48,7 +48,7 @@ Im currently Working to enhance the renaming Tool and in the future I want to im
 
 ~~3: Dont rename a second time if the tool jsut run once over your files~~
 
-4: Add a Progress Bar so see the status of the file renaming
+4: Add a Progress Bar so see the status of the file copy and renaming
 
 5: start Programm directly via command line with a keyword
 
