@@ -4,7 +4,9 @@
   "description": "Gopro chaptered File rename tool",
   "main": "app.js",
   "dependencies": {
-    "enquirer": "^2.3.6"
+    "cli-progress": "^3.8.2",
+    "enquirer": "^2.3.6",
+    "progress-stream": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {
