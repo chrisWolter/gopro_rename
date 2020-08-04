@@ -75,15 +75,13 @@ function rename(renameConfig) {
 function copyRename(renameConfig) {
 
   const bar = new cliProgress.SingleBar(
-    {format: '{bar} {percentage}% | Expected Time: {eta}s | {value}/{total}'},
+    {format: '{bar} {percentage}% | Duration: {eta}s | {value}/{total}'},
     cliProgress.Presets.shades_classic
   );
 
-  let configLength = renameConfig.length;
+  bar.start(renameConfig.length, 0);
 
-  bar.start(configLength, 0);
-
-  while(configLength !== 0){
+  while(renameConfig.length !== 0){
     const config = renameConfig.shift();
 
     const newDirectory = directory + "/renamedFiles/";
@@ -93,4 +91,5 @@ function copyRename(renameConfig) {
     renameAndCopyFiles(newDirectory, oldFileName, newFileName);
     bar.increment(1);
   }
+  bar.stop()
 }
