@@ -1,6 +1,7 @@
 const { prepareRename } = require("./service/prepareRename");
 const { prompt } = require("enquirer");
 const { renameFiles, renameAndCopyFiles } = require("./service/renameFiles");
+const cliProgress = require("cli-progress");
 const {
   initQuestion,
   renameQuestionPrompt,
@@ -72,11 +73,24 @@ function rename(renameConfig) {
 }
 
 function copyRename(renameConfig) {
-  renameConfig.forEach((config) => {
+
+  const bar = new cliProgress.SingleBar(
+    {format: '{bar} {percentage}% | Expected Time: {eta}s | {value}/{total}'},
+    cliProgress.Presets.shades_classic
+  );
+
+  let configLength = renameConfig.length;
+
+  bar.start(configLength, 0);
+
+  while(configLength !== 0){
+    const config = renameConfig.shift();
+
     const newDirectory = directory + "/renamedFiles/";
 
     const newFileName = newDirectory + config.newFileName;
     const oldFileName = directory + "/" + config.oldFileName;
-    new renameAndCopyFiles(newDirectory, oldFileName, newFileName);
-  });
+    renameAndCopyFiles(newDirectory, oldFileName, newFileName);
+    bar.increment(1);
+  }
 }
