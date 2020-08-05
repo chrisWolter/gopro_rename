@@ -7,30 +7,37 @@ The files are renamed from: GH010001 and GH020001 to GH010001_1 and GH010001_2. 
 
 This Tool is currently under development. I cant ensure that your files are working properly after renaming, so please make sure you have a copy of your files.
 
-## Instalation
+## Installation
 
 You need to install Node for using this tool. You can Download Node [Here!](https://nodejs.org/en/)
 
+After installing Node open your command line (cmd) and go into the folder where the programm is located.
+Like this if you have downloaded it currently.
+
+```bash
+ cd C:\Users\[Username]\gopro_rename
+```
+
+After directing into the folder just run:
+
+```bash
+ npm i -g
+```
+This will install the programm.
+
 ## Usage
 
-To use the Gopro Rename Tool open your command line (cmd) and got to the root where you the app.js file is located.
+To use the Gopro Rename Tool open your command line (cmd) and start the programm by using the gopro-rename command
 
 ```bash
- cd <Your Path>
+gopro-rename
 ```
-Like this:
 
+and just hit enter. Then you have to Select your Gopro Model and enter your file Path where your Gopro Files are located. Like this: 
 ```bash
- cd C:\Users\[Username]\Gopro\Gopro files
+C:\Users\[Username]\Gopro\Gopro files
 ```
-
-When you are in the correct Path you can run the file with
-
-```bash
-node app.js
-```
-
-and just hit enter. Then you have to Select your Gopro Model and enter your file Path where your Gopro Files are located. Then the Programm will show you a List with all Files that will be renamed and what the new filename will be. If you want to rename those files you can choose if these files should be copied and renaimed in a subfolder so the original files wouldnt be touched. If you choose not to copy and rename the files in the main folder will be renamed.
+Then the Programm will show you a List with all Files that will be renamed and what the new filename will be. If you want to rename those files you can choose if these files should be copied and renamed in a subfolder so the original files wouldnt be touched. If you choose not to copy and rename, the files in the main folder will be renamed.
 
 ## Support
 
@@ -48,11 +55,13 @@ Im currently Working to enhance the renaming Tool and in the future I want to im
 
 ~~3: Dont rename a second time if the tool jsut run once over your files~~
 
-4: Add a Progress Bar so see the status of the file copy and renaming
+~~4: Add a Progress Bar so see the status of the file copy and renaming~~
 
-5: start Programm directly via command line with a keyword
+~~5: start Programm directly via command line with a keyword~~
 
-6: Undo Renaming
+6: Update the duration time frequently
+
+7: Undo Renaming
 
 
 ## License
