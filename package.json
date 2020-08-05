@@ -9,6 +9,9 @@
     "progress-stream": "^2.0.0"
   },
   "devDependencies": {},
+  "bin": {
+    "gopro-rename": "./src/app.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
