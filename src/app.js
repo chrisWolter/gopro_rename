@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { prepareRename } = require("./service/prepareRename");
 const { prompt } = require("enquirer");
 const { renameFiles, renameAndCopyFiles } = require("./service/renameFiles");
