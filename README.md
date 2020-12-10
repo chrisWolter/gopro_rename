@@ -59,7 +59,7 @@ Im currently Working to enhance the renaming Tool and in the future I want to im
 
 ~~5: start Programm directly via command line with a keyword~~
 
-6: Check if Hero 9 has new Naming and implement it
+~~6: Check if Hero 9 has new Naming and implement it~~
 
 7: Update the duration time frequently
 
