@@ -39,7 +39,7 @@ function selectGopro(type) {
       renameWrapper("Hero");
       break;
 
-    case "Hero 6 - 8, MAX":
+    case "Hero 6 - 9, MAX":
       renameWrapper("Hero6");
       break;
 
