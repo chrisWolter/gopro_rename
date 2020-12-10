@@ -5,7 +5,7 @@ const initQuestion = [
     message: "Which Gopro do you have?",
     choices: [
       { name: "Hero HD 2 - Hero (2018)", message: "Hero HD 2 - Hero (2018)" }, //<= choice object
-      { name: "Hero 6 - 8, MAX", message: "Hero 6 - 8, MAX" }, //<= choice object
+      { name: "Hero 6 - 9, MAX", message: "Hero 6 - 9, MAX" }, //<= choice object
       { name: "Fusion", message: "Fusion" }, //<= choice object
     ],
   },
